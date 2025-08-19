@@ -3,7 +3,7 @@ name: Advanced Selenium UI Tests
 on:
   pull_request:
     branches:
-     - master
+      - master
 
   workflow_dispatch:
     inputs:
@@ -54,19 +54,32 @@ jobs:
       if: matrix.browser == 'chrome'
       run: |
         sudo apt-get update
-        sudo apt-get install -y google-chrome-stable chromium-chromedriver
+        sudo apt-get install -y wget unzip
+        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+        CHROME_VER=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+        wget https://chromedriver.storage.googleapis.com/${CHROME_VER}/chromedriver_linux64.zip
+        unzip chromedriver_linux64.zip
+        sudo mv chromedriver /usr/local/bin/
+        google-chrome --version
+        chromedriver --version
 
     - name: Install Firefox and GeckoDriver
-    
       if: matrix.browser == 'firefox'
       run: |
         sudo apt-get update
-        sudo apt-get install -y firefox
-        # Download latest geckodriver
+        sudo apt-get install -y wget tar
+        # Install official Firefox (non-Snap)
+        wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"
+        tar xjf firefox.tar.bz2
+        sudo mv firefox /opt/firefox
+        sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
+        # Install latest GeckoDriver
         GECKO_VER=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
         wget https://github.com/mozilla/geckodriver/releases/download/v$GECKO_VER/geckodriver-v$GECKO_VER-linux64.tar.gz
         tar -xzf geckodriver-v$GECKO_VER-linux64.tar.gz
         sudo mv geckodriver /usr/local/bin/
+        firefox --version
         geckodriver --version
 
     - name: Run Selenium tests
