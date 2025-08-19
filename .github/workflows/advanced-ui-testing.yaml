@@ -48,7 +48,6 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        
         pip install -r requirements.txt
         
     - name: Install Chrome and ChromeDriver
@@ -62,19 +61,15 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y wget tar
-        # Remove Snap Firefox if installed
         sudo snap remove firefox || true
-        # Download official Firefox
         wget -O firefox.tar.xz "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
         tar xJf firefox.tar.xz
         sudo mv firefox /opt/firefox
         sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-        # Install GeckoDriver
         wget https://github.com/mozilla/geckodriver/releases/latest/download/geckodriver-v0.36.0-linux64.tar.gz
         tar -xvzf geckodriver-v0.36.0-linux64.tar.gz
         sudo mv geckodriver /usr/local/bin/
         sudo chmod +x /usr/local/bin/geckodriver
-
 
     - name: Run Selenium tests
       env:
@@ -85,7 +80,7 @@ jobs:
         OLLAMA_URL: "http://54.246.56.174:3000"
         TEST_NAME: ${{ matrix.browser }}-${{ matrix.resolution.name }}
       run: |
-        pytest tests/ -v --tb=short
+        pytest tests/ -v --tb=short --alluredir=allure-results
 
     - name: Upload Allure results as artifact
       uses: actions/upload-artifact@v4
@@ -119,8 +114,16 @@ jobs:
               cp -r "$dir"* allure-results/ 2>/dev/null || true
             fi
           done
+
+      # ✅ Download previous allure-history to preserve trends
+      - name: Download existing allure history
+        uses: actions/download-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
+        continue-on-error: true
           
-      - name: Generate and Deploy Allure Report
+      - name: Generate Allure Report
         uses: simple-elf/allure-report-action@master
         with:
           allure_results: allure-results
@@ -128,10 +131,17 @@ jobs:
           gh_pages: gh-pages
           allure_history: allure-history
           keep_reports: 20
+
+      # ✅ Upload new history for next runs
+      - name: Upload updated allure history
+        uses: actions/upload-artifact@v4
+        with:
+          name: allure-history
+          path: allure-history
+          retention-days: 30
    
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.UI_TESTING_GITHUB_TOKEN }}
           publish_dir: allure-history
-
