@@ -69,18 +69,20 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install -y wget tar
-        # Install official Firefox (non-Snap)
-        wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"
+        # Download latest Firefox tarball directly
+        FIREFOX_VER=$(curl -s https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US | grep -oP 'firefox-\d+\.\d+(\.\d+)?\.tar.bz2' | head -1)
+        wget "https://ftp.mozilla.org/pub/firefox/releases/latest/linux-x86_64/en-US/firefox-$(basename $FIREFOX_VER)" -O firefox.tar.bz2
         tar xjf firefox.tar.bz2
         sudo mv firefox /opt/firefox
         sudo ln -s /opt/firefox/firefox /usr/local/bin/firefox
-        # Install latest GeckoDriver
+        # Download latest GeckoDriver
         GECKO_VER=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
         wget https://github.com/mozilla/geckodriver/releases/download/v$GECKO_VER/geckodriver-v$GECKO_VER-linux64.tar.gz
         tar -xzf geckodriver-v$GECKO_VER-linux64.tar.gz
         sudo mv geckodriver /usr/local/bin/
         firefox --version
         geckodriver --version
+
 
     - name: Run Selenium tests
       env:
