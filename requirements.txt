@@ -1,0 +1,5 @@
+# requirements.txt
+selenium
+allure-pytest
+pytest
+py
