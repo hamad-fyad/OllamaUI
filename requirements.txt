@@ -2,5 +2,4 @@
 selenium
 allure-pytest
 pytest
-allure-pytest
 py
