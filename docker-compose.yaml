@@ -1,0 +1,31 @@
+services:
+  yolo:
+    image: hamadfyad/${YOLO_IMAGE}
+    ports:
+      - "${YOLO_PORT}:8080"
+    environment:
+      - DB_BACKEND=postgres
+      - DATABASE_URL=postgresql://user:pass@postgres/predictions
+    depends_on:
+      - postgres
+    volumes:
+      - ./uploads:/app/uploads
+
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: predictions
+    ports:
+      - "5432:5432"
+      
+  ollama:
+    image: hamadfyad/${OLLAMA_UI_IMAGE}
+    ports:
+      - "${OLLAMA_UI_PORT}:3000"
+    depends_on:
+      - yolo
+    environment:
+      - YOLO_SERVICE=${YOLO_SERVICE}
