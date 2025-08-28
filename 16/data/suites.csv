@@ -1,4 +1,0 @@
-"DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","5889","test_send_message","tests","Tue Aug 19 15:00:48 UTC 2025","passed","Tue Aug 19 15:00:54 UTC 2025","ExampleTestCase","test_example","",""
-"","5615","test_page_title","tests","Tue Aug 19 15:00:42 UTC 2025","passed","Tue Aug 19 15:00:47 UTC 2025","ExampleTestCase","test_example","",""
-"","11042","test_change_name","tests","Tue Aug 19 15:00:30 UTC 2025","passed","Tue Aug 19 15:00:41 UTC 2025","ExampleTestCase","test_example","",""
