@@ -60,11 +60,11 @@ jobs:
           script: |
             cd /home/ubuntu
             docker compose down || true
-            # Update or add OLLAMA_UI_IMG_TAG in .env
+            TAG="${{ steps.set_tag.outputs.IMAGE_TAG }}"
             if grep -q '^OLLAMA_UI_IMG_TAG=' .env; then
-                sudo sed -i "s/^OLLAMA_UI_IMG_TAG=.*/OLLAMA_UI_IMG_TAG=$IMAGE_TAG/" .env
+                sudo sed -i "s/^OLLAMA_UI_IMG_TAG=.*/OLLAMA_UI_IMG_TAG=$TAG/" .env
             else
-                echo "OLLAMA_UI_IMG_TAG=$IMAGE_TAG" | sudo tee -a .env > /dev/null
+                echo "OLLAMA_UI_IMG_TAG=$TAG" | sudo tee -a .env > /dev/null
             fi
             docker compose up -d
 #TODO check why is the image tag not being set
