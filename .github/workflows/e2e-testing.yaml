@@ -35,8 +35,8 @@ jobs:
         id: set_tag
         run: |
           TAG="${{ github.event.inputs.tag || github.sha }}-$(date +%Y%m%d-%H%M%S)"
-          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ollama:$TAG .
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ollama:$TAG
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/ollama5tech:$TAG .
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/ollama5tech:$TAG
           echo "::set-output name=IMAGE_TAG::$TAG"
           echo "IMAGE_TAG=$TAG" >> $GITHUB_ENV
 
