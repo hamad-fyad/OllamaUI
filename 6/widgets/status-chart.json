@@ -1,1 +1,1 @@
-[]
+[{"uid":"fb3b144af2ed2e05","name":"Send Message and Verify Response","time":{"start":1757064426412,"stop":1757064429434,"duration":3022},"status":"passed","severity":"blocker"},{"uid":"2baf00248dd4546","name":"Change User Name","time":{"start":1757064417632,"stop":1757064423576,"duration":5944},"status":"broken","severity":"normal"},{"uid":"a2a40bbc9ce4e13e","name":"Verify Ollama UI Page Title","time":{"start":1757064423651,"stop":1757064426409,"duration":2758},"status":"passed","severity":"critical"}]
