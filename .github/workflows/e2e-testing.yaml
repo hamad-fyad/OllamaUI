@@ -67,7 +67,7 @@ jobs:
                 echo "OLLAMA_UI_IMG_TAG=$TAG" | sudo tee -a .env > /dev/null
             fi
             docker compose up -d
-#TODO check why is the image tag not being set
+#TODO check why is the image tag not being set 
 
   selenium-matrix-tests:
     runs-on: ubuntu-latest
