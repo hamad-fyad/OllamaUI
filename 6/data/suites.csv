@@ -1,4 +1,4 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"This test sends a message to the chat and validates that a response is displayed.","3173","Send Message and Verify Response","tests","Fri Sep 05 09:38:13 UTC 2025","passed","Fri Sep 05 09:38:17 UTC 2025","ExampleTestCase","test_example","",""
-"This test verifies that the Ollama UI homepage title contains 'Ollama UI'.","2861","Verify Ollama UI Page Title","tests","Fri Sep 05 09:38:10 UTC 2025","passed","Fri Sep 05 09:38:13 UTC 2025","ExampleTestCase","test_example","",""
-"This test changes the user name and verifies the update is reflected.","4387","Change User Name","tests","Fri Sep 05 09:38:06 UTC 2025","passed","Fri Sep 05 09:38:10 UTC 2025","ExampleTestCase","test_example","",""
+"This test sends a message to the chat and validates that a response is displayed.","1649","Send Message and Verify Response","tests","Fri Sep 05 10:20:02 UTC 2025","passed","Fri Sep 05 10:20:03 UTC 2025","ExampleTestCase","test_example","",""
+"This test changes the user name and verifies the update is reflected.","10189","Change User Name","tests","Fri Sep 05 10:19:50 UTC 2025","passed","Fri Sep 05 10:20:01 UTC 2025","ExampleTestCase","test_example","",""
+"This test verifies that the Ollama UI homepage title contains 'Ollama UI'.","1133","Verify Ollama UI Page Title","tests","Fri Sep 05 10:20:01 UTC 2025","passed","Fri Sep 05 10:20:02 UTC 2025","ExampleTestCase","test_example","",""
