@@ -1,4 +1,0 @@
-Browser: firefox
-Resolution Name: firefox-laptop
-Screen: 1366x768
-Environment: None

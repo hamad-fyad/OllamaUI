@@ -1,4 +1,0 @@
-Browser: chrome
-Resolution Name: chrome-desktop-full
-Screen: 1920x1080
-Environment: None

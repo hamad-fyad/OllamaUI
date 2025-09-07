@@ -1,4 +1,0 @@
-Browser: chrome
-Resolution Name: chrome-mobile
-Screen: 375x667
-Environment: None

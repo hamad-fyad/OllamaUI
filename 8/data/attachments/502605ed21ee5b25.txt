@@ -1,4 +1,0 @@
-Browser: firefox
-Resolution Name: firefox-desktop-full
-Screen: 1920x1080
-Environment: None
