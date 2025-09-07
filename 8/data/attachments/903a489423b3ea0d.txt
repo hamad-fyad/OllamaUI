@@ -1,0 +1,4 @@
+Browser: firefox
+Resolution Name: firefox-mobile
+Screen: 375x667
+Environment: None
