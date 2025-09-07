@@ -1,0 +1,5 @@
+Browser: chrome
+Resolution: 1366x768
+Docker Tag: f4c27c634bf350c2c1775e191f4acdbef72dc17c-20250907-082118
+Environment: staging
+Test Name: chrome-laptop
