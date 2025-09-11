@@ -1,0 +1,2 @@
+Viewport width: 1920
+Current window width: 1920
