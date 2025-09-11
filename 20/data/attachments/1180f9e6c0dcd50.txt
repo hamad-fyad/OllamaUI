@@ -1,2 +1,0 @@
-Viewport width: 1366
-Current window width: 1366
