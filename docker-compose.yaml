@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   yolo:
     image: hamadfyad/${YOLO_IMAGE}
@@ -15,12 +17,11 @@ services:
       - ./uploads:/app/uploads
       - ~/.aws:/root/.aws:ro
 
-
-    rabbitmq:
-      image: rabbitmq:3-management
-      ports:
-        - "5672:5672"
-        - "15672:15672"  # Management UI
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"  # Management UI
 
   postgres:
     image: postgres:13
@@ -35,7 +36,6 @@ services:
     image: hamadfyad/ollama5tech:${OLLAMA_UI_IMG_TAG}
     ports:
       - "${OLLAMA_UI_PORT}:3000"
-      
     depends_on:
       - yolo
     environment:
